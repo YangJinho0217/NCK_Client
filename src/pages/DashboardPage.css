@@ -1,0 +1,97 @@
+.dashboard-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background:
+    radial-gradient(ellipse at 30% 20%, rgba(200, 155, 60, 0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 80%, rgba(30, 60, 120, 0.08) 0%, transparent 50%),
+    linear-gradient(180deg, #0a0e1a 0%, #091428 50%, #0a1628 100%);
+  overflow: hidden;
+}
+
+.dashboard-bg-overlay {
+  position: absolute;
+  inset: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60"><rect width="60" height="60" fill="none"/><path d="M30 0L60 30L30 60L0 30Z" stroke="rgba(200,155,60,0.03)" fill="none"/></svg>') repeat;
+  pointer-events: none;
+}
+
+.dashboard-container {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 48px;
+  width: 100%;
+  max-width: 600px;
+  padding: 0 24px;
+}
+
+.dashboard-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.dashboard-title {
+  font-size: 28px;
+  font-weight: 900;
+  color: #c89b3c;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  text-shadow: 0 0 20px rgba(200, 155, 60, 0.3);
+}
+
+.header-line {
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #c89b3c, transparent);
+}
+
+.dashboard-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  animation: db-fadeIn 0.5s ease;
+}
+
+.dashboard-welcome {
+  color: #8c8c8c;
+  font-size: 15px;
+  letter-spacing: 1px;
+}
+
+.dashboard-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.d-particle {
+  position: absolute;
+  bottom: -10px;
+  width: 1.5px;
+  height: 1.5px;
+  background: #c89b3c;
+  border-radius: 50%;
+  opacity: 0;
+  animation: db-rise linear infinite;
+}
+
+@keyframes db-rise {
+  0% { opacity: 0; transform: translateY(0); }
+  10% { opacity: 0.4; }
+  90% { opacity: 0.1; }
+  100% { opacity: 0; transform: translateY(-100vh); }
+}
+
+@keyframes db-fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
