@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import Toast from '../components/Toast';
+import { setAuth } from '../utils/auth';
 import './LoginPage.css';
 
 function LoginPage() {
@@ -29,6 +30,8 @@ function LoginPage() {
       const data = await res.json();
 
       if (data.success) {
+        setAuth();
+
         const playerRes = await fetch('http://localhost:3000/api/v1/player-setting/player', {
           method: 'GET',
           credentials: 'include',
@@ -36,9 +39,9 @@ function LoginPage() {
         const playerData = await playerRes.json();
 
         if (playerData.success) {
-          navigate('/link');
+          navigate('/link', { replace: true });
         } else {
-          navigate('/dashboard');
+          navigate('/dashboard', { replace: true });
         }
       } else {
         showToast(data.message);

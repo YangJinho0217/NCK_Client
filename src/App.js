@@ -1,23 +1,37 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import PublicRoute from './components/PublicRoute';
+import Sidebar from './components/Sidebar';
 import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
 import LinkPage from './pages/LinkPage';
 import DashboardPage from './pages/DashboardPage';
+import UsersPage from './pages/UsersPage';
 
-function App() {
+function AppContent() {
+  const location = useLocation();
+  const publicPaths = ['/', '/signup'];
+  const showSidebar = !publicPaths.includes(location.pathname);
+
   return (
-    <Router>
+    <>
+      {showSidebar && <Sidebar />}
       <Routes>
         <Route path="/" element={<PublicRoute><LoginPage /></PublicRoute>} />
         <Route path="/signup" element={<PublicRoute><SignupPage /></PublicRoute>} />
         <Route path="/link" element={<LinkPage />} />
         <Route path="/dashboard" element={<DashboardPage />} />
+        <Route path="/users" element={<UsersPage />} />
       </Routes>
+    </>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <AppContent />
     </Router>
   );
 }
 
 export default App;
-
-// 대시보드 화면에서, 이동필요

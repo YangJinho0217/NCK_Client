@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import Toast from '../components/Toast';
+import { setAuth } from '../utils/auth';
 import './SignupPage.css';
 
 function SignupPage() {
@@ -35,8 +36,9 @@ function SignupPage() {
       const data = await res.json();
 
       if (data.success) {
+        setAuth();
         showToast('회원가입이 완료되었습니다!', 'success');
-        setTimeout(() => navigate('/dashboard'), 1000);
+        setTimeout(() => navigate('/dashboard', { replace: true }), 1000);
       } else {
         showToast(data.message);
       }

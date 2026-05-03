@@ -1,8 +1,8 @@
 import { Navigate } from 'react-router-dom';
-import { isLoggedIn } from '../utils/cookie';
+import { isAuthenticated } from '../utils/auth';
 
 function PublicRoute({ children }) {
-  if (isLoggedIn()) {
+  if (isAuthenticated()) {
     return <Navigate to="/dashboard" replace />;
   }
   return children;
